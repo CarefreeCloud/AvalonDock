@@ -1,18 +1,11 @@
 ﻿/************************************************************************
-
    AvalonDock
 
    Copyright (C) 2007-2013 Xceed Software Inc.
 
-   This program is provided to you under the terms of the New BSD
-   License (BSD) as published at http://avalondock.codeplex.com/license 
-
-   For more features, controls, and fast professional support,
-   pick up AvalonDock in Extended WPF Toolkit Plus at http://xceed.com/wpf_toolkit
-
-   Stay informed: follow @datagrid on Twitter or Like facebook.com/datagrids
-
-  **********************************************************************/
+   This program is provided to you under the terms of the Microsoft Public
+   License (Ms-PL) as published at https://opensource.org/licenses/MS-PL
+ ************************************************************************/
 
 using System;
 using System.Linq;
@@ -21,13 +14,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Xceed.Wpf.AvalonDock.Layout;
+using AvalonDock.Layout;
 using System.Diagnostics;
 using System.IO;
-using Xceed.Wpf.AvalonDock.Layout.Serialization;
-using Xceed.Wpf.AvalonDock;
+using AvalonDock.Layout.Serialization;
+using AvalonDock;
 
-namespace AvalonDock.TestApp
+namespace TestApp
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -77,8 +70,8 @@ namespace AvalonDock.TestApp
 		/// </summary>
 		public int TestTimer
 		{
-			get { return (int)GetValue(TestTimerProperty); }
-			set { SetValue(TestTimerProperty, value); }
+			get => (int)GetValue(TestTimerProperty);
+			set => SetValue(TestTimerProperty, value);
 		}
 
 		#endregion
@@ -98,8 +91,8 @@ namespace AvalonDock.TestApp
 		/// </summary>
 		public Brush TestBackground
 		{
-			get { return (Brush)GetValue(TestBackgroundProperty); }
-			set { SetValue(TestBackgroundProperty, value); }
+			get => (Brush)GetValue(TestBackgroundProperty);
+			set => SetValue(TestBackgroundProperty, value);
 		}
 
 		#endregion
@@ -119,8 +112,8 @@ namespace AvalonDock.TestApp
 		/// </summary>
 		public string FocusedElement
 		{
-			get { return (string)GetValue(FocusedElementProperty); }
-			set { SetValue(FocusedElementProperty, value); }
+			get => (string)GetValue(FocusedElementProperty);
+			set => SetValue(FocusedElementProperty, value);
 		}
 
 		#endregion
@@ -243,5 +236,24 @@ namespace AvalonDock.TestApp
 		{
 			////            LayoutDocumentPane.ShowHeader = !LayoutDocumentPane.ShowHeader;
 		}
-	}
+
+		/// <summary>
+		/// Method create a new anchorable window to test whether a floating window will auto-adjust its size to the
+		/// containing control. See SetWindowSizeWhenOpened property in <seealso cref="LayoutAnchorableFloatingWindow"/>
+		/// and App.xaml in this demo App for more details.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void OnNewFloatingWindow(object sender, RoutedEventArgs e)
+        {
+            var view = new TestUserControl();
+            var anchorable = new LayoutAnchorable()
+            {
+                Title = "Floating window with initial usercontrol size",
+				Content = view
+			};
+            anchorable.AddToLayout(dockManager,AnchorableShowStrategy.Most);
+            anchorable.Float();
+        }
+    }
 }

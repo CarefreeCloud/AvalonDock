@@ -17,17 +17,17 @@
 
   <ItemGroup>
     <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.0" />
-    <PackageReference Include="Dirkster.MLib" Version="1.2.0" />
-    <PackageReference Include="Dirkster.MWindowLib" Version="1.2.1" />
+    <PackageReference Include="Dirkster.MLib" Version="1.3.0.1" />
+    <PackageReference Include="Dirkster.MWindowLib" Version="1.3.0.2" />
     <PackageReference Include="Dirkster.NumericUpDownLib" Version="2.4.0" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.3" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Components\Xceed.Wpf.AvalonDock.Themes.Expression\Xceed.Wpf.AvalonDock.Themes.Expression.csproj" />
-    <ProjectReference Include="..\..\Components\Xceed.Wpf.AvalonDock.Themes.Metro\Xceed.Wpf.AvalonDock.Themes.Metro.csproj" />
-    <ProjectReference Include="..\..\Components\Xceed.Wpf.AvalonDock.Themes.VS2013\Xceed.Wpf.AvalonDock.Themes.VS2013.csproj" />
-    <ProjectReference Include="..\..\Components\Xceed.Wpf.AvalonDock\Xceed.Wpf.AvalonDock.csproj" />
+    <ProjectReference Include="..\..\Components\AvalonDock.Themes.Expression\AvalonDock.Themes.Expression.csproj" />
+    <ProjectReference Include="..\..\Components\AvalonDock.Themes.Metro\AvalonDock.Themes.Metro.csproj" />
+    <ProjectReference Include="..\..\Components\AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj" />
+    <ProjectReference Include="..\..\Components\AvalonDock\AvalonDock.csproj" />
     <ProjectReference Include="..\..\MLibTest\MLibTest_Components\ServiceLocator\ServiceLocator.csproj" />
     <ProjectReference Include="..\..\MLibTest\MLibTest_Components\Settings\SettingsModel\SettingsModel.csproj" />
     <ProjectReference Include="..\..\MLibTest\MLibTest_Components\Settings\Settings\Settings.csproj" />

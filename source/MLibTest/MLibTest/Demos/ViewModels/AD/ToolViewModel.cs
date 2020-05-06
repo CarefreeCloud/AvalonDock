@@ -1,4 +1,4 @@
-﻿namespace AvalonDock.MVVMTestApp
+﻿namespace MLibTest.Demos.ViewModels.AD
 {
 	internal class ToolViewModel : PaneViewModel
 	{
@@ -37,7 +37,7 @@
 		/// </summary>
 		public bool IsVisible
 		{
-			get { return _isVisible; }
+			get => _isVisible;
 			set
 			{
 				if (_isVisible != value)

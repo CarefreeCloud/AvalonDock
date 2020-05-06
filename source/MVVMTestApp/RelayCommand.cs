@@ -5,35 +5,31 @@ namespace AvalonDock.MVVMTestApp
 {
 	internal class RelayCommand : ICommand
 	{
-		#region Fields
+		#region fields
 
 		readonly Action<object> _execute;
 		readonly Predicate<object> _canExecute;
 
-		#endregion // Fields
+		#endregion fields
 
 		#region Constructors
 
-		public RelayCommand(Action<object> execute)
-			: this(execute, null)
+		public RelayCommand(Action<object> execute) : this(execute, null)
 		{
 		}
 
 		public RelayCommand(Action<object> execute, Predicate<object> canExecute)
 		{
-			if (execute == null)
-				throw new ArgumentNullException("execute");
-
-			_execute = execute;
+			_execute = execute ?? throw new ArgumentNullException(nameof(execute));
 			_canExecute = canExecute;
 		}
-		#endregion // Constructors
+		#endregion Constructors
 
 		#region ICommand Members
 
 		public bool CanExecute(object parameter)
 		{
-			return _canExecute == null ? true : _canExecute(parameter);
+			return _canExecute?.Invoke(parameter) ?? true;
 		}
 
 		public event EventHandler CanExecuteChanged
@@ -47,6 +43,6 @@ namespace AvalonDock.MVVMTestApp
 			_execute(parameter);
 		}
 
-		#endregion // ICommand Members
+		#endregion ICommand Members
 	}
 }

@@ -1,9 +1,9 @@
 ﻿namespace MLibTest.Demos.ViewModels
 {
-	using AvalonDock.MVVMTestApp;
 	using AvalonDock.Tools;
 	using Microsoft.Win32;
-	using MLibTest.Demos.ViewModels.Interfaces;
+    using MLibTest.Demos.ViewModels.AD;
+    using MLibTest.Demos.ViewModels.Interfaces;
 	using MLibTest.ViewModels.Base;
 	using MWindowInterfacesLib.MsgBox.Enums;
 	using System;
@@ -91,7 +91,7 @@
 	/// </summary>
 	internal class WorkSpaceViewModel : MLibTest.ViewModels.Base.ViewModelBase, IWorkSpaceViewModel
 	{
-		#region private fields
+		#region fields
 		private ObservableCollection<FileViewModel> _files = new ObservableCollection<FileViewModel>();
 		private ReadOnlyObservableCollection<FileViewModel> _readonyFiles = null;
 		private ToolViewModel[] _tools = null;
@@ -106,7 +106,7 @@
 		private Tool3_ViewModel _Tool3;
 
 		private FileViewModel _activeDocument = null;
-		#endregion private fields
+		#endregion fields
 
 		#region constructors
 		/// <summary>
@@ -123,27 +123,24 @@
 		public event EventHandler ActiveDocumentChanged;
 
 		#region Properties
-		#region ActiveDocument
 		/// <summary>
 		/// Gets/Sets the currently active document.
 		/// </summary>
 		public FileViewModel ActiveDocument
 		{
-			get { return _activeDocument; }
-
+			get => _activeDocument;
 			set             // This can also be set by the user via the view
 			{
 				if (_activeDocument != value)
 				{
 					_activeDocument = value;
-					RaisePropertyChanged("ActiveDocument");
+					RaisePropertyChanged(nameof(ActiveDocument));
 
 					if (ActiveDocumentChanged != null)
 						ActiveDocumentChanged(this, EventArgs.Empty);
 				}
 			}
 		}
-		#endregion
 
 		/// <summary>
 		/// Gets a collection of all currently available documents

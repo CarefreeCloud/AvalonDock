@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
-
-namespace AvalonDock.MVVMTestApp
+﻿namespace AvalonDock.MVVMTestApp
 {
-	class FileStatsViewModel : ToolViewModel
+	using System;
+	using System.IO;
+	using System.Windows.Media.Imaging;
+
+	internal class FileStatsViewModel : ToolViewModel
 	{
+		#region fields
+		public const string ToolContentId = "FileStatsTool";
+		private DateTime _lastModified;
+		private long _fileSize;
+		private string _FileName;
+		private string _FilePath;
+		#endregion fields
+
+		#region constructors
+		/// <summary>
+		/// Class constructor
+		/// </summary>
 		public FileStatsViewModel()
 			: base("File Stats")
 		{
@@ -22,10 +30,66 @@ namespace AvalonDock.MVVMTestApp
 			bi.EndInit();
 			IconSource = bi;
 		}
+		#endregion constructors
 
-		public const string ToolContentId = "FileStatsTool";
+		#region Properties
 
-		void OnActiveDocumentChanged(object sender, EventArgs e)
+		public long FileSize
+		{
+			get => _fileSize;
+			protected set
+			{
+				if (_fileSize != value)
+				{
+					_fileSize = value;
+					RaisePropertyChanged(nameof(FileSize));
+				}
+			}
+		}
+
+		public DateTime LastModified
+		{
+			get => _lastModified;
+			protected set
+			{
+				if (_lastModified != value)
+				{
+					_lastModified = value;
+					RaisePropertyChanged(nameof(LastModified));
+				}
+			}
+		}
+
+		public string FileName
+		{
+			get => _FileName;
+			protected set
+			{
+				if (_FileName != value)
+				{
+					_FileName = value;
+					RaisePropertyChanged(nameof(FileName));
+				}
+			}
+		}
+
+		public string FilePath
+		{
+			get => _FilePath;
+			protected set
+			{
+				if (_FilePath != value)
+				{
+					_FilePath = value;
+					RaisePropertyChanged(nameof(FilePath));
+				}
+			}
+		}
+
+		#endregion Properties
+
+		#region methods
+		private void OnActiveDocumentChanged(object sender, EventArgs e)
 		{
 			if (Workspace.This.ActiveDocument != null &&
 				Workspace.This.ActiveDocument.FilePath != null &&
@@ -34,52 +98,18 @@ namespace AvalonDock.MVVMTestApp
 				var fi = new FileInfo(Workspace.This.ActiveDocument.FilePath);
 				FileSize = fi.Length;
 				LastModified = fi.LastWriteTime;
+				FileName = fi.Name;
+				FilePath = fi.Directory.FullName;
 			}
 			else
 			{
 				FileSize = 0;
 				LastModified = DateTime.MinValue;
+				FileName = string.Empty;
+				FilePath = string.Empty;
 			}
 		}
-
-		#region FileSize
-
-		private long _fileSize;
-		public long FileSize
-		{
-			get { return _fileSize; }
-			set
-			{
-				if (_fileSize != value)
-				{
-					_fileSize = value;
-					RaisePropertyChanged("FileSize");
-				}
-			}
-		}
-
-		#endregion
-
-		#region LastModified
-
-		private DateTime _lastModified;
-		public DateTime LastModified
-		{
-			get { return _lastModified; }
-			set
-			{
-				if (_lastModified != value)
-				{
-					_lastModified = value;
-					RaisePropertyChanged("LastModified");
-				}
-			}
-		}
-
-		#endregion
-
-
-
+		#endregion methods
 
 	}
 }

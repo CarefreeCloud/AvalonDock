@@ -41,7 +41,7 @@ PhotoShop and so forth. Here are some CodeProject articles:
 * [AvalonDock [2.0] Tutorial Part 5 - Load/Save Layout with De-Referenced DockingManager](https://www.codeproject.com/Articles/719143/AvalonDock-Tutorial-Part-Load-Save-Layout)
 
 This repository contains **additional bug fixes and a feature added** fork for:
-[xceedsoftware/wpftoolkit](https://github.com/xceedsoftware/wpftoolkit) version **3.2-3.6**.
+xceedsoftware/wpftoolkit version **3.2-3.6**. Version 4.0 and later are developed indepentently, which is why this library (version 4.0 and later) uses the namespaces and library names that were used in AvalonDock 2.0 and earlier versions. But most importantly, the usage of this AvalonDock project remains free for both, commercial and open source users.
 
 There is also an open source repository https://github.com/dotnetprojects/WpfExtendedToolkit with a fixed and stable version of all other (other than AvalonDock) components from the WPFToolKit.
 
@@ -49,12 +49,8 @@ Be sure to checkout the <a href="https://github.com/Dirkster99/AvalonDock/wiki">
 
 ## Building AvalonDock from Source
 
-This project supports multitargeting frameworks (NetCore 3 and .Net 4). This means that any commit before
-[Merge pull request #65 from jogibear9988/master ](https://github.com/Dirkster99/AvalonDock/commit/d85b297bf32bc16f01bd3f898a1ee2acc9e2f71c)
-should build with Visual Studio 2017 Comunity or higher.
-
-The commit [Merge pull request #65 from jogibear9988/master ](https://github.com/Dirkster99/AvalonDock/commit/d85b297bf32bc16f01bd3f898a1ee2acc9e2f71c)
-and any commit after requires **VS 2019 Community** and **NetCore 3 Preview 8 (or later)** for a succesful build from source.
+This project supports multitargeting frameworks (NetCore 3 and .Net 4). This means that it requires
+Visual Studio Community 2019 or better to build.
 
 # Feature Added - Dark and Light VS 2013 Theme
 
@@ -99,18 +95,18 @@ The Docking Buttons are [defined in XAML](https://github.com/Dirkster99/AvalonDo
 
 ## Theming
 
-Using the *Xceed.Wpf.AvalonDock.Themes.VS2013* theme is very easy with *Dark* and *Light* themes.
+Using the *AvalonDock.Themes.VS2013* theme is very easy with *Dark* and *Light* themes.
 Just load *Light* or *Dark* brush resources in you resource dictionary to take advantage of existing definitions.
 
 ```XAML
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Xceed.Wpf.AvalonDock.Themes.VS2013;component/DarkBrushs.xaml" />
+        <ResourceDictionary Source="/AvalonDock.Themes.VS2013;component/DarkBrushs.xaml" />
     </ResourceDictionary.MergedDictionaries>
 ```
 
 ```XAML
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Xceed.Wpf.AvalonDock.Themes.VS2013;component/LightBrushs.xaml" />
+        <ResourceDictionary Source="/AvalonDock.Themes.VS2013;component/LightBrushs.xaml" />
     </ResourceDictionary.MergedDictionaries>
 ```
 
@@ -123,51 +119,43 @@ to also theme standard elements, such as, button and textblock etc.
 
 # Mile Stone History
 
-## Patch History for AvalonDock 3.6.2
-- [Fixed issue #92 Always update floating properties](https://github.com/Dirkster99/AvalonDock/issues/92) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
+## Fixes & Features in master branch (not released to NuGet, yet)
 
-- [Fixed issue #95 AvalonDock: Autohidden Anchorable appears totally invisible after dragging](https://github.com/Dirkster99/AvalonDock/issues/95)
+- [# 151 Model.Root.Manager may be null in LayoutDocumentTabItem](https://github.com/Dirkster99/AvalonDock/issues/151) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
 
-- [System.ArgumentOutOfRangeException in LayoutAnchorableTabItem.OnMouseEnter line](https://github.com/Dirkster99/AvalonDock/issues/90) Thanx to [sharpSteff](https://github.com/sharpSteff)
+## Fixes & Features  added in Version 4.1
 
-## Patch History for AvalonDock 3.6.1
+- [Fix #137 BindingExpression in VS2013 theme](https://github.com/Dirkster99/AvalonDock/issues/137)
 
-- [Fixed issue #81 with docked pane becomes not visible (overlapped)](https://github.com/Dirkster99/AvalonDock/pull/82) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
+- [Feature Added: Auto resizing floating window to content](https://github.com/Dirkster99/AvalonDock/pull/146) [thanx to Erik Ovegård](https://github.com/eriove)
 
-- [Fixed issue #83 with LayoutDocument disappearance](https://github.com/Dirkster99/AvalonDock/pull/84) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
+- Feature Added: Virtualizing Tabbed Documents and/or LayoutAnchorables [PR #143](https://github.com/Dirkster99/AvalonDock/pull/143) + [Virtualization Options](https://github.com/Dirkster99/AvalonDock/commit/1a45dbbe66c931e6c87ad769a9b269da4cb290ae)  [thanx to matko238](https://github.com/matko238)  
+  - See ``DockingManager.IsVirtualizingAnchorable``, ``DockingManager.IsVirtualizingDocument``, and ``IsVirtualizing`` property on ``LayoutAnchorablePaneControl`` and ``LayoutDocumentPaneControl``.
 
-- [Fixed InvalidOperationException when deserializing layout](https://github.com/Dirkster99/AvalonDock/issues/59) [@dirkster](https://github.com/Dirkster99/AvalonDock/pull/86)
+- [Fixed Issue #149 Flicker/Lag when restoring floating window from Maximized state](https://github.com/Dirkster99/AvalonDock/issues/149) [thanx to skyneps](https://github.com/skyneps)
 
-- [Fixed LayoutRoot implementation of IXmlSerializable.ReadXml to read the end element](https://github.com/Dirkster99/AvalonDock/issues/88) thanx to [prmartinuk](https://github.com/prmartinuk)
+- [Fixed Issue #150 Restoring floating window position on multiple monitors uses wrong Point for Virtual Screen location](https://github.com/Dirkster99/AvalonDock/issues/150) [thanx to charles-roberts](https://github.com/charles-roberts)
 
-## Patch History for AvalonDock Version 3.6
+## Fixes and Features added in Version 4.0
 
-- selecting a new LayoutAnchorableTabPanel from an auto sized width panel, will no longer undock the LayoutAnchorableTabPanel [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/8dfde7b011b30f4f9576cf414eb87090e4544aeb)
+- [Fix #98 with floating window without a content #99](https://github.com/Dirkster99/AvalonDock/pull/99) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
 
-- null checks will now prevent crashes when creating the View [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/fdc7f6af4941690a3bc7852d09394e7d87bd4c23) [@dirkster99_1](https://github.com/Dirkster99/AvalonDock/commit/c06efac6479a3bad1417356e39f5974dadedc662)
+- Changed coding style to using TABS as indentation
+- **Breaking Change** [Changed namespaces to AvalonDock (as authored originally in version 2.0 and earlier)](https://github.com/Dirkster99/AvalonDock/pull/102) See also [Issue #108](https://github.com/Dirkster99/AvalonDock/issues/108)
 
-- LayoutAnchorablePanes now have the possibility to be docked in a LayoutAnchorableFloatingWindow, when hosted in a WinForm [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/aed7a02470d52e4a29264c710f8edd7b5e63fa21)
+- [Fix #101 and new fix for #81 with docked pane becomes not visible.](https://github.com/Dirkster99/AvalonDock/issues/101) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
 
-- LayoutContent.ContentID is now a bindable dependency property (@dirkster99)[https://github.com/Dirkster99/AvalonDock/commit/9fa76a74fae69865d1adfee0dc8865d8085e03e5]
+- [Feature added: allow documents to be docked in a floating window](https://github.com/Dirkster99/AvalonDock/pull/107) Thanx to [amolf-se](https://github.com/amolf-se) [https://github.com/mkonijnenburg](mkonijnenburg) @ [http://www.amolf.nl](http://www.amolf.nl)
 
-- floating windows will no longer have blurry buttons (@dirkster99)[https://github.com/Dirkster99/AvalonDock/commit/813f4bae9aa6525fabbe3b045ab968af5d69a276]
+- [Feature added: AutoHideDelay property to control the time until an AutoHide window is reduced back to its anchored representation](https://github.com/Dirkster99/AvalonDock/pull/110) Thanx to [Alexei Stukov](https://github.com/Jiiks)
 
-- modifying the theme will now update the side anchored items [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/f0afbfe18abfbf32aa3bac088c68dbc8f898c95d) [@dirkster99_1](https://github.com/Dirkster99/AvalonDock/commit/bd740e30ebd277f82716e6dc50442471d8e0d64b)
+- [Fix #127 Controls cause memory leaks via event listener](https://github.com/Dirkster99/AvalonDock/issues/127)
 
-- to improve the performance when the LayoutGridControl is initialized, children are now updated only for DirectChildren changes [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/f7427b756211c3a0a533a13ae24f59fbdf3b817b)
+- [Fix #111 AvalonDock.LayoutRoot doesn't know how to deserialize...](https://github.com/Dirkster99/AvalonDock/issues/111) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
 
-- when the last LayoutDocument is removed, the DockingManager.ActiveContent will no longer have a reference to this last removed LayoutDocument, to prevent a memory leak [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/37109e1d8431d30651fcffcfd0b5aacf6484573a) [@dirkster99_1](https://github.com/Dirkster99/AvalonDock/commit/b054943a51c8baabd9a4a7caff401fc4c00839ba)  
-  
-- the DockingManager.AnchorTemplate property will now be applied to LayoutAnchorable controls.  
-  [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/f0afbfe18abfbf32aa3bac088c68dbc8f898c95d)
+- [Fix #117 Dragging LayoutAnchoreable into outer docking buttons of floating document result in Exception](https://github.com/Dirkster99/AvalonDock/issues/117) Thanx to [scdmitryvodich](https://github.com/scdmitryvodich)
 
-- using frame navigation with LayoutAnchorableFloatingWindow will no longer cause a crash.  
-  [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/deab47852eed20369d1781db35a44bd4df6f6164)
-
-- Removed unused code  
-  [@dirkster99](https://github.com/Dirkster99/AvalonDock/commit/7f6646bc9227348f4699613d8a352ac93efccb33)
+- [Fix #132 Drop FloatingDocumentWindow into DocumentPane is not consistent (when FloatingDocumentWindow contains LayoutAnchorable)](https://github.com/Dirkster99/AvalonDock/issues/132)
 
 ## More Patch History
-Please review the Path History for more more information on patches in previously released versions of AvalonDock:
-- <a href="https://github.com/Dirkster99/AvalonDock/wiki/Patch-History-Version-3.5">Patch History for version 3.5</a>
-- <a href="https://github.com/Dirkster99/AvalonDock/wiki/Patch-History">Patch History before version 3.5</a>
+Please review the **Path History** for more more information on patches and feaures in <a href="https://github.com/Dirkster99/AvalonDock/wiki/Patch-History">previously released versions of AvalonDock</a>.
